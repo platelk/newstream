@@ -8,10 +8,10 @@
     {
       "client_info": {
         "mobilesdk_app_id": "1:558465472219:android:ef7f5c62a4e9b42a",
-        "client_id": "android:com.platelkevin.newstream.newsstream",
+        "client_id": "android:com.platelkevin.newsstream.newsstream",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "com.platelkevin.newstream.newsstream"
+          "package_name": "com.platelkevin.newsstream.newsstream"
         }
       },
       "oauth_client": [
@@ -19,7 +19,7 @@
           "client_id": "558465472219-c5n994vto695qamfqbsrk569np86o8ma.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.platelkevin.newstream.newsstream",
+            "package_name": "com.platelkevin.newsstream.newsstream",
             "certificate_hash": "544F46D7698A873CFD5B4893529DC4DE3624F9DE"
           }
         },
