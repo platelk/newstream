@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">NewsStream</string>
 
+    <string name="server_client_id">429014816852-eo16kmmvp7pfk0g6afc0fflfomu4nvv9.apps.googleusercontent.com</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="tmp_text">Temporary text</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_splash">SplashActivity</string>
@@ -31,5 +35,22 @@
     <string name="all">All</string>
     <string name="communicate">Communicate</string>
     <string name="profile">Profile</string>
+    <string name="see_more">See more</string>
+    <string name="open_browser">Open in your browser</string>
+    <string name="hint_url">url</string>
+
+    <!-- Image description -->
+    <string name="news_image_desc">Picture related to the news</string>
+    <string name="title_activity_one_news">News</string>
+
+    <!-- In news -->
+    <string name="share_pre_text">Interesting news : </string>
+    <string name="share_action_title">I found something interesting</string>
+    <string name="send_to">Share on :</string>
+    <string name="title_activity_news_feed">NewsFeedActivity</string>
+
+    <!-- News feed management -->
+    <string name="toast_news_feed_added">Success !</string>
+    <string name="toast_news_feed_add_error">Error during add</string>
 
 </resources>

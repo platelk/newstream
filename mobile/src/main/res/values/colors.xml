@@ -3,5 +3,18 @@
     <color name="colorPrimary">#1976D2</color>
     <color name="colorPrimaryDark">#0D47A1</color>
     <color name="colorAccent">#F44336</color>
-    <color name="background">#FEFEFE</color>
+    <color name="background">#FFFFFF</color>
+    <color name="backgroundDark">#DADADA</color>
+
+    <!-- Random background color for title -->
+    <color name="backgroundTitleDeepPurple500">#673AB7</color>
+    <color name="backgroundTitleDeepPurple800">#4527A0</color>
+
+
+    <color name="backgroundTitlePurple500">#9C27B0</color>
+    <color name="backgroundTitlePurple800">#6A1B9A</color>
+
+    <color name="backgroundTitleIndigo500">#3F51B5</color>
+    <color name="backgroundTitleIndigo800">#283593</color>
+
 </resources>
