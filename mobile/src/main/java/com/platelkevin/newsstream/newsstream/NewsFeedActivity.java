@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +20,14 @@ import android.widget.Toast;
 import com.platelkevin.newsstream.core.News;
 import com.platelkevin.newsstream.core.NewsFeed;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
+import io.fabric.sdk.android.services.concurrency.AsyncTask;
+
 public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragment.OnListFragmentInteractionListener {
+    private static final String TAG = "NewsFeedActivity";
     private boolean mBound = false;
     private MainService mService;
     private View mView;
@@ -66,21 +72,7 @@ public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragm
                 if (mService != null) {
                     NewsFeed nf = new NewsFeed();
                     nf.setUrl(url.getText().toString());
-                    List<News> r = nf.fetchAllNews(NewsFeedActivity.this);
-                    if (r == null) {
-                        Toast t = Toast.makeText(NewsFeedActivity.this.getApplicationContext(),
-                                NewsFeedActivity.this.getResources().getText(R.string.toast_news_feed_add_error).toString(),
-                                Toast.LENGTH_SHORT);
-                        t.show();
-                    } else {
-                        mService.addNewsFeeds(nf);
-                        Toast t = Toast.makeText(NewsFeedActivity.this.getApplicationContext(),
-                                NewsFeedActivity.this.getResources().getText(R.string.toast_news_feed_added).toString(),
-                                Toast.LENGTH_SHORT);
-                        t.show();
-                    }
-                    url.setText("");
-                    initNewsFeeds();
+                    new AddNewsFeedStream().execute(nf);
                 }
             }
         });
@@ -147,5 +139,36 @@ public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragm
     @Override
     public void onShareListFragmentInteraction(NewsFeed item) {
 
+    }
+
+    class AddNewsFeedStream extends AsyncTask<NewsFeed, Void, List<News>> {
+
+        @Override
+        protected List<News> doInBackground(NewsFeed... newsFeeds) {
+            Log.d(NewsFeedActivity.TAG, "Starting background process....");
+            NewsFeed nf = newsFeeds[0];
+            List<News> r = nf.fetchAllNews(NewsFeedActivity.this);
+            if (r != null)
+                mService.addNewsFeeds(nf);
+            return r;
+        }
+
+        protected void onPostExecute(List<News> r) {
+            Log.d(NewsFeedActivity.TAG, "ON POST EXECUTE");
+            if (r == null) {
+                Toast t = Toast.makeText(NewsFeedActivity.this.getApplicationContext(),
+                        NewsFeedActivity.this.getResources().getText(R.string.toast_news_feed_add_error).toString(),
+                        Toast.LENGTH_SHORT);
+                t.show();
+            } else {
+                Toast t = Toast.makeText(NewsFeedActivity.this.getApplicationContext(),
+                        NewsFeedActivity.this.getResources().getText(R.string.toast_news_feed_added).toString(),
+                        Toast.LENGTH_SHORT);
+                t.show();
+            }
+            final EditText url = (EditText)findViewById(R.id.editText);
+            url.setText("");
+            initNewsFeeds();
+        }
     }
 }
