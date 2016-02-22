@@ -24,6 +24,7 @@ import java.util.List;
 public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragment.OnListFragmentInteractionListener {
     private boolean mBound = false;
     private MainService mService;
+    private View mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,6 @@ public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragm
                     nf.setUrl(url.getText().toString());
                     List<News> r = nf.fetchAllNews(NewsFeedActivity.this);
                     if (r == null) {
-                        mService.addNewsFeeds(nf);
                         Toast t = Toast.makeText(NewsFeedActivity.this.getApplicationContext(),
                                 NewsFeedActivity.this.getResources().getText(R.string.toast_news_feed_add_error).toString(),
                                 Toast.LENGTH_SHORT);
@@ -92,7 +92,17 @@ public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragm
 
             @Override
             public void onListFragmentInteraction(NewsFeed item) {
+                NewsFeedActivity.this.onListFragmentInteraction(item);
+            }
 
+            @Override
+            public void onDeleteListFragmentInteraction(NewsFeed item) {
+                NewsFeedActivity.this.onDeleteListFragmentInteraction(item);
+            }
+
+            @Override
+            public void onShareListFragmentInteraction(NewsFeed item) {
+                NewsFeedActivity.this.onShareListFragmentInteraction(item);
             }
         }));
     }
@@ -114,6 +124,28 @@ public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragm
 
     @Override
     public void onListFragmentInteraction(NewsFeed item) {
+
+    }
+
+    @Override
+    public void onDeleteListFragmentInteraction(final NewsFeed item) {
+        if (mService == null)
+            return;
+        mService.removeNewsFeeds(item);
+
+        Snackbar
+                .make(findViewById(R.id.newsFeedContainer), R.string.snackbar_delete, Snackbar.LENGTH_LONG)
+                .setAction(R.string.snackbar_undo, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mService.addNewsFeeds(item);
+                    }
+                })
+                .show(); // Don’t forget to show!
+    }
+
+    @Override
+    public void onShareListFragmentInteraction(NewsFeed item) {
 
     }
 }

@@ -40,7 +40,22 @@ import java.util.zip.DataFormatException;
 public class NewsFeed extends SugarRecord implements Parcelable {
     static final String TAG = "NewsFeed";
     static int randomColorProgress = 0;
-    static int[] colors = {R.color.backgroundTitleDeepPurple500, R.color.backgroundTitleIndigo500, R.color.backgroundTitlePurple500};
+    static Integer[] colors = {
+            R.color.backgroundTitleDeepPurple500,
+            R.color.backgroundTitleTeel500,
+            R.color.backgroundTitleRed500,
+            R.color.backgroundTitleGreen500,
+            R.color.backgroundTitleDeepOrange500,
+            R.color.backgroundTitleIndigo500,
+            R.color.backgroundTitlePurple500,
+            R.color.backgroundTitleTeel800,
+            R.color.backgroundTitleRed800,
+            R.color.backgroundTitleGreen800,
+            R.color.backgroundTitleDeepOrange800,
+            R.color.backgroundTitleDeepPurple800,
+            R.color.backgroundTitleIndigo800,
+            R.color.backgroundTitlePurple800
+    };
     static Map<String, Integer> assignateColor = new HashMap<>();
 
     String  url;
@@ -163,7 +178,7 @@ public class NewsFeed extends SugarRecord implements Parcelable {
         this.url = url;
         if (assignateColor.get(url) == null) {
             this.color = colors[randomColorProgress];
-            randomColorProgress++;
+            randomColorProgress = (randomColorProgress + 1) % colors.length;
             assignateColor.put(this.url, this.color);
         } else {
             this.color = assignateColor.get(url);
@@ -188,6 +203,7 @@ public class NewsFeed extends SugarRecord implements Parcelable {
         dest.writeString(url);
         dest.writeString(title);
         dest.writeString(img);
+        dest.writeInt(color);
     }
 
     public static final Parcelable.Creator<NewsFeed> CREATOR
@@ -206,5 +222,6 @@ public class NewsFeed extends SugarRecord implements Parcelable {
         url = in.readString();
         title = in.readString();
         img = in.readString();
+        color = in.readInt();
     }
 }

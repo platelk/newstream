@@ -69,6 +69,13 @@ public class MainService extends Service {
         nf.save();
     }
 
+
+    public void removeNewsFeeds(NewsFeed nf) {
+        newsFeeds.remove(nf);
+        nf.delete();
+    }
+
+
     public List<NewsFeed> getNewsFeeds() {
         return newsFeeds;
     }

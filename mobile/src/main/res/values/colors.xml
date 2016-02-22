@@ -5,8 +5,22 @@
     <color name="colorAccent">#F44336</color>
     <color name="background">#FFFFFF</color>
     <color name="backgroundDark">#DADADA</color>
+    <color name="textColor">#000000</color>
+    <color name="textColorLight">#5A5A5A</color>
 
     <!-- Random background color for title -->
+    <color name="backgroundTitleRed500">#F44336</color>
+    <color name="backgroundTitleRed800">#C62828</color>
+
+    <color name="backgroundTitleTeel500">#009688</color>
+    <color name="backgroundTitleTeel800">#00695C</color>
+
+    <color name="backgroundTitleDeepOrange500">#FF5722</color>
+    <color name="backgroundTitleDeepOrange800">#D84315</color>
+
+    <color name="backgroundTitleGreen500">#43A047</color>
+    <color name="backgroundTitleGreen800">#1B5E20</color>
+
     <color name="backgroundTitleDeepPurple500">#673AB7</color>
     <color name="backgroundTitleDeepPurple800">#4527A0</color>
 

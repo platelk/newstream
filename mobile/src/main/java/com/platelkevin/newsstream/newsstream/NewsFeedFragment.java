@@ -104,5 +104,7 @@ public class NewsFeedFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(NewsFeed item);
+        void onDeleteListFragmentInteraction(NewsFeed item);
+        void onShareListFragmentInteraction(NewsFeed item);
     }
 }

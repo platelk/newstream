@@ -50,6 +50,8 @@
     <string name="title_activity_news_feed">NewsFeedActivity</string>
 
     <!-- News feed management -->
+    <string name="snackbar_delete">News feed deleted</string>
+    <string name="snackbar_undo">undo</string>
     <string name="toast_news_feed_added">Success !</string>
     <string name="toast_news_feed_add_error">Error during add</string>
 

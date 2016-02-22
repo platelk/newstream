@@ -61,8 +61,10 @@ public class OneNewsActivity extends AppCompatActivity {
 
         if (mNews == null)
             return;
-        if (mNews.getParent() != null)
+        if (mNews.getParent() != null) {
             from.setText(mNews.getParent().getTitle());
+            from.setBackgroundColor(getResources().getColor(mNews.getParent().getColor()));
+        }
         date.setText(mNews.getDate().toString());
         author.setText(mNews.getAuthor());
         Picasso.with(this).load(mNews.getImg()).into(img);

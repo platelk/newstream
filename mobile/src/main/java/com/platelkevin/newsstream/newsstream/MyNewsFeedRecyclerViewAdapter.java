@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.platelkevin.newsstream.core.NewsFeed;
@@ -37,6 +38,23 @@ public class MyNewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsFe
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
         holder.mContentView.setText(mValues.get(position).getUrl());
+        holder.mMainColor.setBackgroundColor(holder.mView.getResources().getColor(mValues.get(position).getColor()));
+
+        ImageButton btn = (ImageButton)holder.mView.findViewById(R.id.deleteBtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onDeleteListFragmentInteraction(holder.mItem);
+            }
+        });
+
+        btn = (ImageButton)holder.mView.findViewById(R.id.shareBtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onShareListFragmentInteraction(holder.mItem);
+            }
+        });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +77,7 @@ public class MyNewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsFe
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView mMainColor;
         public NewsFeed mItem;
 
         public ViewHolder(View view) {
@@ -66,6 +85,7 @@ public class MyNewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsFe
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.title);
             mContentView = (TextView) view.findViewById(R.id.url);
+            mMainColor = (TextView) view.findViewById(R.id.newsFeedColor);
         }
 
         @Override
