@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.platelkevin.newsstream.core.News;
 import com.platelkevin.newsstream.core.NewsFeed;
 
@@ -24,6 +26,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.fabric.sdk.android.Fabric;
 import io.fabric.sdk.android.services.concurrency.AsyncTask;
 
 public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragment.OnListFragmentInteractionListener {
@@ -38,6 +41,9 @@ public class NewsFeedActivity extends AppCompatActivity implements NewsFeedFragm
         setContentView(R.layout.activity_news_feed);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Fabric.with(this, new Answers(), new Crashlytics());
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

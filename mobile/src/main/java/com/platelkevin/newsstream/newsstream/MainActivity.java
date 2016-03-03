@@ -25,6 +25,7 @@ import android.widget.Adapter;
 import android.widget.ListView;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.orm.SugarContext;
 import com.platelkevin.newsstream.core.News;
 import com.platelkevin.newsstream.core.NewsFeed;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 
         SugarContext.init(this);
         // Start fabric/crashlytics
-        Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Answers(), new Crashlytics());
 
         // Setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

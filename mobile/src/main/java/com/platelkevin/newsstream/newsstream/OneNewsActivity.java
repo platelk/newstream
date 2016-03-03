@@ -12,10 +12,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.platelkevin.newsstream.core.News;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import io.fabric.sdk.android.Fabric;
 
 public class OneNewsActivity extends AppCompatActivity {
 
@@ -31,6 +35,8 @@ public class OneNewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_one_news);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Fabric.with(this, new Answers(), new Crashlytics());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
